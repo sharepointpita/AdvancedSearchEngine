@@ -8,12 +8,25 @@ namespace AdvancedSearchTest
 {
     class Program
     {
+        // Create advanced search for Application Details
+        static string conStr = ConfigurationManager.ConnectionStrings["ConStr"].ConnectionString;
+
         static void Main(string[] args)
         {
-            // Create advanced search for Application Details
-            string conStr = ConfigurationManager.ConnectionStrings["ConStr"].ConnectionString;
+            //ExampleWhereClause();
 
-            AdvancedSearch.Manager m = new AdvancedSearch.Manager(conStr,"App");
+            ExampleGetDatabaseSchema();
+        }
+
+        private static void ExampleGetDatabaseSchema()
+        {
+            AdvancedSearch.Manager m = new AdvancedSearch.Manager(conStr, "App");
+            m.GetDatabaseSchema();
+        }
+
+        private static void ExampleWhereClause()
+        {
+            AdvancedSearch.Manager m = new AdvancedSearch.Manager(conStr, "App");
 
             string selectClause = @"SELECT  [App].[Name]
                                            ,[App].[BuildNr]
@@ -21,11 +34,11 @@ namespace AdvancedSearchTest
                                            ,[App].[Deployed]
                                            ,[App].[DocumentId]";
 
-//            string fromClause = @"FROM [App]
-//                                  LEFT JOIN [Document] on [App].[DocumentId] = [Document].[Id]";
+            //            string fromClause = @"FROM [App]
+            //                                  LEFT JOIN [Document] on [App].[DocumentId] = [Document].[Id]";
 
             m.SetSelectClause(selectClause);
-           // m.SetFromClause(fromClause);
+            // m.SetFromClause(fromClause);
 
 
 
@@ -33,19 +46,19 @@ namespace AdvancedSearchTest
             m.Fields.Add(new AdvancedSearch.Field("Application Name", "Name", new AdvancedSearch.TextType()));
             m.Fields.Add(new AdvancedSearch.Field("Build Number", "BuildNr", new AdvancedSearch.Number()));
             m.Fields.Add(new AdvancedSearch.Field("Version", "Version", new AdvancedSearch.Number()));
-            m.Fields.Add(new AdvancedSearch.Field("Is deployed?", "Deployed", new AdvancedSearch.BooleanType ()));
+            m.Fields.Add(new AdvancedSearch.Field("Is deployed?", "Deployed", new AdvancedSearch.BooleanType()));
 
             // Create Complex FieldTypes (such as KeyValue (used by dropdownlists))
-            
-            string keyValueScript = 
+
+            string keyValueScript =
             @"SELECT Id, DocumentName
             From Document
             Where Deleted = 0 OR Deleted IS NULL";
             m.Fields.Add(new AdvancedSearch.Field("Document name", "DocumentId", new AdvancedSearch.KeyValueType(keyValueScript)));
 
-            
-            
-            
+
+
+
             keyValueScript =
             @"SELECT [Id], [Name]
             From KeyUser";
@@ -55,8 +68,8 @@ namespace AdvancedSearchTest
                 "LEFT JOIN [KeyUser] as [ku] on [App].Id = [ku].[AppId]"));
 
 
-            
-            
+
+
             keyValueScript =
             @"SELECT [Id], [Name]
             From Technology
@@ -66,17 +79,17 @@ namespace AdvancedSearchTest
                 "Tech",
                 @"left join [App_Technology] on  [App_Technology].AppId = [App].[Id] AND ( [App_Technology].Deleted IS NULL OR [App_Technology].Deleted = 0 )
                   left join [Technology] as [Tech] on [Tech].Id = [App_Technology].TechnologyId"));
-           
-            
-            
+
+
+
             // Initialize Complex FieldTypes. This means complex FieldTypes will get data from databases or executes other logic.
             m.InitializeComplexFields();
 
 
             // Set values
             var field = m.Fields.FirstOrDefault(o => o.DisplayName == "Application Name");
-            var oper =  field.FieldType.DefaultOperator;
-            field.SelectedValues.Add(new AdvancedSearch.SelectedValue() { Operator = oper , Value= "test" });
+            var oper = field.FieldType.DefaultOperator;
+            field.SelectedValues.Add(new AdvancedSearch.SelectedValue() { Operator = oper, Value = "test" });
 
 
             field = m.Fields.FirstOrDefault(o => o.DisplayName == "Build Number");

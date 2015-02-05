@@ -139,6 +139,11 @@ namespace AdvancedSearch
 
             return ds;
         }
+
+        public DataTable GetDatabaseSchema()
+        {
+            return AdvancedSearch.Table.TableManager.GetSchema();
+        }
         
     }
 }
