@@ -89,5 +89,10 @@ namespace AdvancedSearch
             _customJoin = join;
         }
 
+        public override string ToString()
+        {
+            return _displayName;
+        }
+
     }
 }

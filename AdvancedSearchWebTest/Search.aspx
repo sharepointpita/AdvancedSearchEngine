@@ -21,6 +21,7 @@
     <form id="form1" runat="server">
     <asp:ScriptManager runat="server">
     </asp:ScriptManager>
+
     <div class="ContainerSearchCriteria">
         <asp:UpdatePanel ID="updPnl" runat="server" style="width:100%" >
             <ContentTemplate>

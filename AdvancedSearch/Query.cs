@@ -51,10 +51,9 @@ namespace AdvancedSearch
 
             sb.AppendLine(_selectClause);
 
-            _fromClause = string.Empty;
             _whereClause = string.Empty;
 
-            _fromClause = (string.Format("FROM [{0}]{1}", _rootTable,Environment.NewLine));
+            _fromClause = ConstructFrom();
            _whereClause = ConstructWhere(fields);
 
             sb.AppendLine(_fromClause);
@@ -67,8 +66,18 @@ namespace AdvancedSearch
 
         public string ConstructFrom()
         {
-            throw new NotImplementedException();
+            string fromClause = null;
+
+            if (!string.IsNullOrWhiteSpace(_rootTable))
+            {
+                string rootTable = GetSafeTableName(_rootTable);
+
+                fromClause = (string.Format("FROM {0}{1}", rootTable, Environment.NewLine));
+            }
+
+            return fromClause;
         }
+        
 
         public string ConstructWhere(List<Field> fields)
         {
@@ -99,8 +108,8 @@ namespace AdvancedSearch
 
                     for (int j = 0; j < f.SelectedValues.Count; j++)
                     {
-                        sb.Append(string.Format("[{0}].[{1}] {2} {3} ",
-                            table,
+                        sb.Append(string.Format("{0}.[{1}] {2} {3} ",
+                            GetSafeTableName( table),
                             f.SqlFieldName,
                             string.Format(f.SelectedValues[j].Operator.SqlSyntax, f.SelectedValues[j].Value),
                             Environment.NewLine + FilterType.ToString()));
@@ -117,6 +126,25 @@ namespace AdvancedSearch
             sb.AppendLine();
 
             return sb.ToString();
+        }
+
+        private string GetSafeTableName(string tableName)
+        {
+            string safeTableName = null;
+
+            if (!string.IsNullOrWhiteSpace(tableName))
+            {
+                safeTableName = tableName;
+
+                if (safeTableName[0] != '[')
+                    safeTableName.Insert(0, "[");
+
+                if (safeTableName[safeTableName.Length - 1] != ']')
+                    safeTableName += "]";
+
+            }
+
+            return safeTableName;
         }
 
         #endregion

@@ -231,7 +231,12 @@ namespace AdvancedSearchWebTest
         {
             if (!IsPostBack)
             {
-                SetSearchFields();
+                // Manager has not been created by the Select.aspx
+                if (Manager == null)
+                {
+                    SetSearchFields();
+                }
+
 
                 // Add dummy item 
                 List<SelectedSearchField> dmy = new List<SelectedSearchField>();
@@ -275,8 +280,8 @@ namespace AdvancedSearchWebTest
 
             // Create simple FieldTypes (such as Text, Number, Boolean)
             m.Fields.Add(new AdvancedSearch.Field("Application Name", "Name", new AdvancedSearch.TextType()));
-            m.Fields.Add(new AdvancedSearch.Field("Build Number", "BuildNr", new AdvancedSearch.Number()));
-            m.Fields.Add(new AdvancedSearch.Field("Version", "Version", new AdvancedSearch.Number()));
+            m.Fields.Add(new AdvancedSearch.Field("Build Number", "BuildNr", new AdvancedSearch.NumberType()));
+            m.Fields.Add(new AdvancedSearch.Field("Version", "Version", new AdvancedSearch.NumberType()));
             m.Fields.Add(new AdvancedSearch.Field("Is deployed?", "Deployed", new AdvancedSearch.BooleanType()));
 
             // Create Complex FieldTypes (such as KeyValue (used by dropdownlists))

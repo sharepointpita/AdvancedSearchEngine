@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="AdvancedSearch.Field">
+    <Position X="16" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEYAMABAMAAAAAAAIAAAAAYAgBIgAAQAAAAAAEAAAAA=</HashCode>
+      <FileName>Field.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="SelectedValues" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AdvancedSearch.Manager">
+    <Position X="13.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQIAAAAAEAQAgQACAAECgCAAAAAAIACAAAAAAgAA=</HashCode>
+      <FileName>Manager.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Field Name="_query" />
+    </ShowAsAssociation>
+    <ShowAsCollectionAssociation>
+      <Property Name="Fields" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="AdvancedSearch.Operator">
+    <Position X="18.75" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEAAAAAAACAAAAAAAAAQAAAAAAAAAACAAAAAAAAA=</HashCode>
+      <FileName>Operator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvancedSearch.Query">
+    <Position X="11.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAABAAAAAABAAAAIAAAACAAAAQAAIAAABgAAIAAAg=</HashCode>
+      <FileName>Query.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvancedSearch.SelectedValue">
+    <Position X="18.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAIAA=</HashCode>
+      <FileName>SelectedValue.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsAssociation>
+      <Property Name="Operator" />
+    </ShowAsAssociation>
+  </Class>
+  <Class Name="AdvancedSearch.BooleanType">
+    <Position X="0.75" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>FieldTypes\BooleanType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvancedSearch.KeyValueType">
+    <Position X="7.5" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAAACEQAAAAAAAAAAAAEAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>FieldTypes\KeyValueType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvancedSearch.NumberType">
+    <Position X="3" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>FieldTypes\NumberType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvancedSearch.TextType">
+    <Position X="5.25" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>FieldTypes\TextType.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvancedSearch.ComplexTypeBase">
+    <Position X="7.5" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>FieldTypeBases\ComplexTypeBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvancedSearch.FieldTypeBase">
+    <Position X="4" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAQAAAAAAAAAAAEAAAAAAQAAAAAAIAA=</HashCode>
+      <FileName>FieldTypeBases\FieldTypeBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="AdvancedSearch.SimpleTypeBase">
+    <Position X="3" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAA=</HashCode>
+      <FileName>FieldTypeBases\SimpleTypeBase.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Enum Name="AdvancedSearch.Enums.FieldTypeName">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAQACAAAAAEAAAAAAAAAAAAAAAAAACAAAAAA=</HashCode>
+      <FileName>_enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="AdvancedSearch.Enums.FilterType">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAgIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>_enums.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

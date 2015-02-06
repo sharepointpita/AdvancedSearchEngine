@@ -5,9 +5,9 @@ using System.Web;
 
 namespace AdvancedSearch
 {
-    public class Number : SimpleTypeBase
+    public class NumberType : SimpleTypeBase
     {
-        public Number(): base(Enums.FieldTypeName.Number)
+        public NumberType(): base(Enums.FieldTypeName.Number)
         {
  
         }

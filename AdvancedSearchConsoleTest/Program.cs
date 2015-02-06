@@ -20,8 +20,57 @@ namespace AdvancedSearchTest
 
         private static void ExampleGetDatabaseSchema()
         {
-            AdvancedSearch.Manager m = new AdvancedSearch.Manager(conStr, "App");
-            m.GetDatabaseSchema();
+            AdvancedSearch.DBSchema.SchemaManager sm = new AdvancedSearch.DBSchema.SchemaManager(conStr);
+            var schema = sm.GetSchema();
+
+
+            // Let the user choose maximal 1 table and related columns to create a query
+            for (int i = 0; i < schema.Tables.Count; i++)
+            {
+                Console.WriteLine("{0}      {1}",i,schema.Tables[i].Name);
+            }
+            Console.WriteLine("Press the number of the database you want to query:");
+            var databaseNr = Convert.ToInt32( Console.ReadLine());
+
+            Console.WriteLine("Press the number columns you want to query comma seperated");
+            for (int i = 0; i < schema.Tables[databaseNr].Columns.Count; i++)
+            {
+                Console.WriteLine("{0}      {1}", i, schema.Tables[databaseNr].Columns[i].Name);
+            }
+            var commaSepColumns = Console.ReadLine().ToString().Split(new char[] { ',' });
+
+
+            // Let's create the actual query
+            AdvancedSearch.Manager m = new AdvancedSearch.Manager(conStr, schema.Tables[databaseNr].Name);
+
+            StringBuilder sb = new StringBuilder();
+            string selectClause = string.Empty;
+            sb.AppendLine("SELECT");
+
+            for (int i = 0; i < schema.Tables[databaseNr].Columns.Count; i++)
+            {
+                if (commaSepColumns.Contains(i.ToString()))
+                {
+                    sb.AppendFormat("{0},", schema.Tables[databaseNr].Columns[i].Name);
+
+                    m.Fields.Add(new AdvancedSearch.Field(
+                        schema.Tables[databaseNr].Columns[i].Name,
+                        schema.Tables[databaseNr].Columns[i].Name,
+                        schema.Tables[databaseNr].Columns[i].Fieldtype
+                        ));
+                }
+            }
+
+            if (sb.ToString()[sb.ToString().Length - 1] == ',')
+            {
+               selectClause =  sb.ToString().Remove(sb.ToString().Length - 1);
+            }
+
+            m.SetSelectClause(selectClause);
+            m.SetFilterType(AdvancedSearch.Enums.FilterType.AND);
+
+            var result = m.CreateQuery();
+
         }
 
         private static void ExampleWhereClause()
@@ -44,8 +93,8 @@ namespace AdvancedSearchTest
 
             // Create simple FieldTypes (such as Text, Number, Boolean)
             m.Fields.Add(new AdvancedSearch.Field("Application Name", "Name", new AdvancedSearch.TextType()));
-            m.Fields.Add(new AdvancedSearch.Field("Build Number", "BuildNr", new AdvancedSearch.Number()));
-            m.Fields.Add(new AdvancedSearch.Field("Version", "Version", new AdvancedSearch.Number()));
+            m.Fields.Add(new AdvancedSearch.Field("Build Number", "BuildNr", new AdvancedSearch.NumberType()));
+            m.Fields.Add(new AdvancedSearch.Field("Version", "Version", new AdvancedSearch.NumberType()));
             m.Fields.Add(new AdvancedSearch.Field("Is deployed?", "Deployed", new AdvancedSearch.BooleanType()));
 
             // Create Complex FieldTypes (such as KeyValue (used by dropdownlists))

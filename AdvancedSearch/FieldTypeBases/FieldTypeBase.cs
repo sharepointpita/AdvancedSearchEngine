@@ -34,6 +34,14 @@ namespace AdvancedSearch
             _type = type;
         }
 
+        public override string ToString()
+        {
+            if (_type != null)
+                return _type.ToString();
+            else
+                return base.ToString();
+        }
+
   
         
     }

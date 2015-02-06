@@ -20,6 +20,11 @@ namespace AdvancedSearch
             _sqlSyntax = sqlSyntax;
         }
 
+        public override string ToString()
+        {
+            return _displayName;
+        }
+
 
     }
 }

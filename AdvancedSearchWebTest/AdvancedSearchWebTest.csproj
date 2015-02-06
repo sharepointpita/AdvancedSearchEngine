@@ -69,11 +69,14 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="App_Data\AdventureWorksLT2012_Data.mdf" />
+    <Content Include="App_Data\AdventureWorksLT2012_log.ldf" />
     <Content Include="DataBase\CREATE DB SCRIPT.sql" />
     <Content Include="Images\add.ico" />
     <Content Include="Images\delete2.ico" />
     <Content Include="Images\edit2.ico" />
     <Content Include="Search.aspx" />
+    <Content Include="Select.aspx" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -90,6 +93,13 @@
     </Compile>
     <Compile Include="Search.aspx.designer.cs">
       <DependentUpon>Search.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Select.aspx.cs">
+      <DependentUpon>Select.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Select.aspx.designer.cs">
+      <DependentUpon>Select.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

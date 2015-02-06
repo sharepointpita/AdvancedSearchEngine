@@ -57,11 +57,13 @@
     <Compile Include="FieldTypes\TextType.cs" />
     <Compile Include="Query.cs" />
     <Compile Include="SelectedValue.cs" />
-    <Compile Include="Table\Constants.cs" />
-    <Compile Include="Table\DatabaseSchema.cs" />
-    <Compile Include="Table\TableSchema.cs" />
-    <Compile Include="Table\TableEngine.cs" />
+    <Compile Include="DatabaseSchema\DBObjects.cs" />
+    <Compile Include="DatabaseSchema\SchemaManager.cs" />
     <Compile Include="_enums.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagrams\ClassDiagram_DynamicSelectTableBranch.cd" />
+    <None Include="ClassDiagrams\ClassDiagram_MainBranch.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
